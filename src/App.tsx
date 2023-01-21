@@ -1,26 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useEffect} from 'react';
 import './App.css';
+import {Header} from "./components/header/Header";
+import {Routing} from "./components/Routing";
+import {SnackBar} from "./components/snackBar/SnackBar";
+import BackDrop from "./components/backDrop/BackDrop";
+import {useAppDispatch} from "./store/reducers/Store";
+import {authTC, setIsLogin} from "./store/reducers/authReducer";
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const dispatch=useAppDispatch()
+
+    useEffect(()=>{
+        dispatch(authTC())
+        if(localStorage.getItem('token')) {
+            dispatch(setIsLogin(true))
+        }
+    })
+
+    return (
+        <div>
+            <BackDrop/>
+            <SnackBar/>
+            <Header/>
+            <Routing/>
+        </div>
+    );
 }
 
 export default App;

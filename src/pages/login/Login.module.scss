@@ -1,0 +1,16 @@
+.loginBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .loginPaper {
+    margin-top:20px;
+    padding: 20px;
+    width: 300px;
+    height: 400px;
+
+    .loginFormLabel{
+      text-align: center;
+    }
+  }
+}
